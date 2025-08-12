@@ -21,8 +21,12 @@ export default function CreateLink() {
             setFee(0);
             setMessage(`Link adicionado com sucesso! acesse: ${window.location.href}${linkId}`);
         }).catch((error) => {
-            setMessage(`Erro ao adicionar link: ${error.message}`);
-        }); 3
+            if (error.message && (error.message.toLowerCase().includes("insufficient funds") || error.message.toLowerCase().includes("funds"))) {
+                setMessage("Saldo insuficiente na carteira para pagar a taxa de transação. Adicione BNB de teste à sua carteira.");
+            } else {
+                setMessage(`Erro ao adicionar link: ${error.message}`);
+            }
+        });
     }
 
     return (
@@ -33,7 +37,7 @@ export default function CreateLink() {
                 <input value={url} onChange={(e) => setUrl(e.target.value)} className="border bg-white mb-4 text-sm border-gray-300 p-2 rounded" type="text" placeholder="Cole seu link aqui" />
                 <label htmlFor="fee">Taxa por clique</label>
                 <input value={fee} onChange={(e) => setFee(Number(e.target.value))} className="border bg-white mb-4 text-sm border-gray-300 p-2 rounded text-center" type="number" placeholder="Defina a taxa por clique" />
-                <button onClick={handleSubmit} className="bg-blue-500 text-white p-2 rounded flex items-center justify-center relative" type="submit">
+                <button onClick={handleSubmit} className="bg-blue-500 text-white p-2 rounded flex items-center justify-center cursor-pointer relative" type="submit">
                     <p>Proteger Link</p>
                     <Image src={"/metamask.png"} className="absolute right-4" alt="metamask logo" width={24} height={24} />
                 </button>

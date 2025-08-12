@@ -45,7 +45,7 @@ export default function Home() {
         if (typeof fee === "string") {
             try {
                 const result = await payLink(String(params.linkId), fee);
-                setMessage(`Pagamento bem-sucedido! ${result.linkId}`);
+                setMessage(`Pagamento bem-sucedido! Acesse: ${result.url}`);
             } catch (error) {
                 setMessage(`Erro ao processar pagamento: ${error}`);
             }
@@ -68,7 +68,7 @@ export default function Home() {
                             <form action="" className="flex flex-col w-full max-w-md" onSubmit={handlePayment}>
                                 <label htmlFor="fee">Pagar para acessar link</label>
                                 <input className="border mb-4 text-sm border-gray-300 p-2 rounded text-center" type="number" placeholder="Defina a taxa por clique" name="fee" />
-                                <button className="bg-blue-500 text-white p-2 rounded" type="submit">Pagar</button>
+                                <button className="bg-blue-500 text-white p-2 rounded cursor-pointer" type="submit">Pagar</button>
                             </form>
                         </>
                     )}

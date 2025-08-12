@@ -33,7 +33,8 @@ export async function getLink(linkId: string): Promise<Link> {
 }
 export async function payLink(linkId: string, valueInWei: string): Promise<Link> {
     const contract = await connectContract();
-    return await contract.methods.buyAccess(linkId).call({
+    await contract.methods.buyAccess(linkId).send({
         value: valueInWei
     });
+    return await contract.methods.getLink(linkId).call();
 }
