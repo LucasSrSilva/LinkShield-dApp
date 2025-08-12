@@ -27,7 +27,7 @@ export default function CreateLink() {
 
     return (
         <main className="flex flex-col items-center justify-start px-18 pt-20 gap-20 bg-gray-100 border border-gray-300 shadow">
-            <h1 className="text-3xl font-bold text-gray-700">Encurte links e lucre com eles</h1>
+            <h1 className="text-3xl font-bold text-gray-700">Proteja seus links e lucre com eles</h1>
             <form action="" className="flex flex-col w-full max-w-md">
                 <label htmlFor="link">Cole seu link:</label>
                 <input value={url} onChange={(e) => setUrl(e.target.value)} className="border bg-white mb-4 text-sm border-gray-300 p-2 rounded" type="text" placeholder="Cole seu link aqui" />
