@@ -25,7 +25,11 @@ export async function addLink({ url, linkId, feeInWei }: { url: string; linkId: 
 }
 export async function getLink(linkId: string): Promise<Link> {
     const contract = await connectContract();
-    return await contract.methods.getLink(linkId).call();
+    try{
+        return await contract.methods.getLink(linkId).call();
+    }catch(error){
+        throw new Error("erro ao conectar metamask")
+    }
 }
 export async function payLink(linkId: string, valueInWei: string): Promise<Link> {
     const contract = await connectContract();
